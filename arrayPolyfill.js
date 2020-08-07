@@ -40,7 +40,19 @@ function every(array,fn){
  }
  return !!array.length
 }
-// 5、数组倒序
+// 5、数组的reduce
+function reduce(array,fn,prev){
+ validate(array);
+ for(var i = 0;i<array.length;i++){
+  if(prev===undefined){
+    prev = fn(array[i],array[i+1],i+1,array)
+  }else{
+   prev = fn(prev,array[i],i,array)
+  }
+ }
+ return prev
+}
+// 6、数组倒序
 function reverse(array) {
    validate(array)
    var that = array;
