@@ -1,5 +1,5 @@
 function validate(array){
- if(Object.prototype.toString.call(array)!=='[object Array]') throw TypeError(' is not a typed array!');
+ if(Object.prototype.toString.call(array)!=='[object Array]') New Error(' is not a typed array!');
 }
 // 1、数组的map方法
 function map(array,fn){
