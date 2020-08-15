@@ -154,3 +154,23 @@ function (target, source) {
   }
   return to;
 }
+
+// 10、 Array数组的find
+if(!Array.prototype.find){
+ Object.defineProperty(Array.prototype,'find',{
+  value:function(predicate){
+     if(this==null) throw new TypeError('"this" is null or not defined')
+     if(typeof predicate !=='function') throw new TypeError('predicate must be function')
+     var o = Object(this)
+     var len = o.length>>>0
+     var thisArg = arguments[1]
+     var k = 0
+     while(k<len){
+      var kval = o[k]
+      if(predicate.call(thisArg,kval,k,o)) return kval
+      k++
+    }
+   return undefined
+  }
+ })
+}
