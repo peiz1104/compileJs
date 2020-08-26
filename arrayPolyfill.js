@@ -195,3 +195,26 @@ if(!Array.prototype.includes){
    }
   })
 }
+// 12、Function.prototype.bind方法
+if(!Funtion.prototype.bind)(function(){
+ var slice = Array.prototype.slice
+ Function.prototype.bind = function(Argthis){
+  if(typeof this!=='function') throw new TypeError('this must be function')
+  var baseArg = slice.call(arguments,1),
+  baseArgLength = baseArg.length,
+  fToBind = this,
+  fNOP = function() {},
+  fBound  = function() {
+  baseArg.length = baseArgLength; // reset to default base arguments
+  baseArg.push.apply(baseArg, arguments);
+  return fToBind.apply(fNOP.prototype.isPrototypeOf(this) ? this : Argthis, baseArg);
+   };
+ if (this.prototype) {
+     // Function.prototype doesn't have a prototype property
+     fNOP.prototype = this.prototype; 
+    }
+    fBound.prototype = new fNOP();
+    return fBound;
+ }
+})()
+
