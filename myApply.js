@@ -25,3 +25,14 @@ Function.prototype.myCall = function(context){
  context[fn](...arg)
  delete context[fn]
 }
+
+Function.prototype.myBind = function(context){
+ if(typeof this!=='function') throw new TypeError('context must be function')
+ var thisArg = this;
+ var arg = [...arguments].slice(1)
+ context = context || window
+ return function bind(){
+  var newArg = arg.concat([...arguments])
+  thisArg.apply(context,newArg)
+ }
+}
