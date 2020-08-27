@@ -33,6 +33,6 @@ Function.prototype.myBind = function(context){
  context = context || window
  return function bind(){
   var newArg = arg.concat([...arguments])
-  thisArg.apply(context,newArg)
+  return thisArg.apply(context,newArg)
  }
 }
