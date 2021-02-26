@@ -6,7 +6,7 @@ function mySymbol(obj){
  return symbolK
 }
 Function.prototype.myApply = function(context){
-  if(typeof this !=='function') throw new TypeError('context must be function')
+  if(typeof this !=='function') throw new TypeError(`${this} is not a function`)
   context = context || window
   if(arguments[1]&&typeof arguments[1]!=='object') throw new TypeError('')
   var arg = arguments[1]? [...arguments].slice(1):[]
@@ -17,7 +17,7 @@ Function.prototype.myApply = function(context){
 }
 
 Function.prototype.myCall = function(context){
- if(typeof this !=='function') throw new TypeError('context must be function')
+ if(typeof this !=='function') throw new TypeError(`${this} is not a function`)
  context = context || window
  var arg = [...arguments].slice(1)
  var fn = mySymbol(context)
@@ -27,7 +27,7 @@ Function.prototype.myCall = function(context){
 }
 
 Function.prototype.myBind = function(context){
- if(typeof this!=='function') throw new TypeError('context must be function')
+ if(typeof this!=='function') throw new TypeError(`${this} is not a function`)
  var thisArg = this;
  var arg = [...arguments].slice(1)
  context = context || window
