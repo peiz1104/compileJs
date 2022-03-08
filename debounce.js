@@ -1,7 +1,7 @@
 /*
 * 防抖函数
 */
-function debounce(func,wait,immediate){
+function debounce1(func,wait,immediate){
   let context,timeout,args,result,timestamp;
   const later = function(){
     const last = +new Date() - timestamp;
@@ -27,9 +27,9 @@ function debounce(func,wait,immediate){
   }
 }
 /*
-* 截流函数
+* 防抖函数2
 */
-function throttle(func,delay){
+function debounce2(func,delay){
   let timeout, args,context;
   return function(...argu){
     args = argu;
@@ -45,4 +45,39 @@ function throttle(func,delay){
     },delay)
   }
   
+}
+/*
+* 截流1
+*/
+function throttle1(func,delay){
+  let args,context;
+  let valid = true;
+  return function(...argu){
+   if(!valid) return false;
+    valid = false;
+    args = argu;
+    context = this;
+    setTimeout(()=>{
+      func.apply(context,args);
+      valid = true;
+      context = args = null;
+    },delay)
+  }
+}
+/**
+* 截流2
+*/
+function throttle2(func,delay){
+  let timeout,args,context;
+  return function(...argu){
+    if(!timeout){
+      args = argu;
+      context = this;
+      timeout = setTimeout(()=>{
+        func.apply(context,args);
+        args = context = null;
+        timeout = null;
+      },delay)
+    }
+  }
 }
